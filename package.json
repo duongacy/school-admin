@@ -13,7 +13,9 @@
     "start": "strapi start",
     "strapi": "strapi",
     "upgrade": "npx @strapi/upgrade latest",
-    "upgrade:dry": "npx @strapi/upgrade latest --dry"
+    "upgrade:dry": "npx @strapi/upgrade latest --dry",
+    "export-db": "npm run strapi export -- --file export.tar.gz.enc --key 123456",
+    "import-db": "npm run strapi import -f export.tar.gz.enc --key 123456"
   },
   "dependencies": {
     "@strapi/plugin-cloud": "5.31.0",

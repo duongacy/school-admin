@@ -1,0 +1,23 @@
+{
+  "kind": "collectionType",
+  "collectionName": "thong_baos",
+  "info": {
+    "singularName": "thong-bao",
+    "pluralName": "thong-baos",
+    "displayName": "ThongBao"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "tieu_de": {
+      "type": "string",
+      "required": true
+    },
+    "noi_dung": {
+      "type": "richtext",
+      "required": true
+    }
+  }
+}

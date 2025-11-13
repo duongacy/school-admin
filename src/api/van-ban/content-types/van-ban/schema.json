@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "van_bans",
+  "info": {
+    "singularName": "van-ban",
+    "pluralName": "van-bans",
+    "displayName": "VanBan"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "tieu_de": {
+      "type": "string"
+    },
+    "noi_dung": {
+      "type": "richtext",
+      "required": true
+    }
+  }
+}

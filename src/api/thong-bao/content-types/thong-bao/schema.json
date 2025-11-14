@@ -4,19 +4,23 @@
   "info": {
     "singularName": "thong-bao",
     "pluralName": "thong-baos",
-    "displayName": "ThongBao"
+    "displayName": "Thông báo"
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "tieu_de": {
+    "title": {
       "type": "string",
       "required": true
     },
-    "noi_dung": {
-      "type": "richtext",
+    "content": {
+      "type": "customField",
+      "customField": "plugin::ckeditor5.CKEditor",
+      "options": {
+        "preset": "defaultHtml"
+      },
       "required": true
     }
   }

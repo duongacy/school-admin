@@ -4,7 +4,7 @@
   "info": {
     "singularName": "event",
     "pluralName": "events",
-    "displayName": "SuKien"
+    "displayName": "Sự kiện"
   },
   "options": {
     "draftAndPublish": true
@@ -15,7 +15,7 @@
     }
   },
   "attributes": {
-    "tieu_de": {
+    "title": {
       "type": "string",
       "pluginOptions": {
         "i18n": {
@@ -24,7 +24,7 @@
       },
       "required": true
     },
-    "mo_ta": {
+    "description": {
       "type": "text",
       "pluginOptions": {
         "i18n": {
@@ -33,7 +33,7 @@
       },
       "required": true
     },
-    "hinh_anh": {
+    "image": {
       "type": "media",
       "pluginOptions": {
         "i18n": {
@@ -46,15 +46,7 @@
         "images"
       ]
     },
-    "noi_dung": {
-      "type": "richtext",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
-    "ngay": {
+    "date": {
       "type": "date",
       "pluginOptions": {
         "i18n": {
@@ -62,6 +54,18 @@
         }
       },
       "required": true
+    },
+    "content": {
+      "type": "customField",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "customField": "plugin::ckeditor5.CKEditor",
+      "options": {
+        "preset": "defaultHtml"
+      }
     }
   }
 }

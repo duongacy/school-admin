@@ -4,36 +4,43 @@
   "info": {
     "singularName": "hoc-sinh-noi-bat",
     "pluralName": "hoc-sinh-noi-bats",
-    "displayName": "HocSinhNoiBat"
+    "displayName": "Học sinh nổi bật"
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "ten": {
+    "name": {
       "type": "string",
       "required": true
     },
-    "truong": {
+    "school": {
       "type": "string",
       "required": true
     },
-    "lop": {
+    "class": {
       "type": "string",
       "required": true
     },
-    "thanh_tich": {
+    "achievement": {
       "type": "string",
       "required": true
     },
-    "hinh_anh": {
+    "image": {
       "type": "media",
       "multiple": false,
       "required": true,
       "allowedTypes": [
         "images"
       ]
+    },
+    "content": {
+      "type": "customField",
+      "customField": "plugin::ckeditor5.CKEditor",
+      "options": {
+        "preset": "defaultMarkdown"
+      }
     }
   }
 }

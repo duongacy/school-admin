@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "events",
+  "collectionName": "outstanding_students",
   "info": {
-    "singularName": "event",
-    "pluralName": "events",
-    "displayName": "Sự kiện"
+    "singularName": "outstanding-student",
+    "pluralName": "outstanding-students",
+    "displayName": "Học sinh nổi bật"
   },
   "options": {
     "draftAndPublish": true
@@ -15,7 +15,7 @@
     }
   },
   "attributes": {
-    "title": {
+    "name": {
       "type": "string",
       "pluginOptions": {
         "i18n": {
@@ -24,13 +24,32 @@
       },
       "required": true
     },
-    "description": {
+    "school": {
       "type": "string",
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
-      }
+      },
+      "required": true
+    },
+    "class": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "required": true
+    },
+    "achievement": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "required": true
     },
     "image": {
       "type": "media",
@@ -39,10 +58,13 @@
           "localized": true
         }
       },
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "allowedTypes": [
-        "images"
+        "images",
+        "files",
+        "videos",
+        "audios"
       ]
     },
     "content": {
@@ -56,15 +78,6 @@
       "options": {
         "preset": "defaultHtml"
       }
-    },
-    "date": {
-      "type": "date",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "required": true
     }
   }
 }

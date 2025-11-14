@@ -430,36 +430,58 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiAboutAbout extends Struct.SingleTypeSchema {
-  collectionName: 'abouts';
+export interface ApiAnnouncementAnnouncement
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'announcements';
   info: {
-    description: 'Write about yourself and the content you create';
-    displayName: 'V\u1EC1 ch\u00FAng t\u00F4i';
-    pluralName: 'abouts';
-    singularName: 'about';
+    displayName: 'Th\u00F4ng b\u00E1o';
+    pluralName: 'announcements';
+    singularName: 'announcement';
   };
   options: {
-    draftAndPublish: false;
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
   };
   attributes: {
-    blocks: Schema.Attribute.DynamicZone<
-      ['shared.media', 'shared.quote', 'shared.rich-text', 'shared.slider']
-    >;
     content: Schema.Attribute.RichText &
+      Schema.Attribute.Required &
       Schema.Attribute.CustomField<
         'plugin::ckeditor5.CKEditor',
         {
           preset: 'defaultHtml';
         }
-      >;
+      > &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<'oneToMany', 'api::about.about'> &
-      Schema.Attribute.Private;
+    description: Schema.Attribute.Text &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::announcement.announcement'
+    >;
     publishedAt: Schema.Attribute.DateTime;
-    title: Schema.Attribute.String;
+    title: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -504,8 +526,7 @@ export interface ApiEventEvent extends Struct.CollectionTypeSchema {
           localized: true;
         };
       }>;
-    description: Schema.Attribute.Text &
-      Schema.Attribute.Required &
+    description: Schema.Attribute.String &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -566,80 +587,21 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
   };
 }
 
-export interface ApiHocSinhNoiBatHocSinhNoiBat
+export interface ApiLegalDocumentLegalDocument
   extends Struct.CollectionTypeSchema {
-  collectionName: 'hoc_sinh_noi_bats';
+  collectionName: 'legal_documents';
   info: {
-    displayName: 'H\u1ECDc sinh n\u1ED5i b\u1EADt';
-    pluralName: 'hoc-sinh-noi-bats';
-    singularName: 'hoc-sinh-noi-bat';
+    displayName: 'V\u0103n b\u1EA3n ph\u00E1p l\u00FD';
+    pluralName: 'legal-documents';
+    singularName: 'legal-document';
   };
   options: {
     draftAndPublish: true;
   };
-  attributes: {
-    achievement: Schema.Attribute.String & Schema.Attribute.Required;
-    class: Schema.Attribute.String & Schema.Attribute.Required;
-    content: Schema.Attribute.RichText &
-      Schema.Attribute.CustomField<
-        'plugin::ckeditor5.CKEditor',
-        {
-          preset: 'defaultMarkdown';
-        }
-      >;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    image: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::hoc-sinh-noi-bat.hoc-sinh-noi-bat'
-    > &
-      Schema.Attribute.Private;
-    name: Schema.Attribute.String & Schema.Attribute.Required;
-    publishedAt: Schema.Attribute.DateTime;
-    school: Schema.Attribute.String & Schema.Attribute.Required;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiHomeHome extends Struct.SingleTypeSchema {
-  collectionName: 'homes';
-  info: {
-    displayName: 'Trang ch\u1EE7';
-    pluralName: 'homes';
-    singularName: 'home';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    hinh_anh_hero: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<'oneToMany', 'api::home.home'> &
-      Schema.Attribute.Private;
-    publishedAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiThongBaoThongBao extends Struct.CollectionTypeSchema {
-  collectionName: 'thong_baos';
-  info: {
-    displayName: 'Th\u00F4ng b\u00E1o';
-    pluralName: 'thong-baos';
-    singularName: 'thong-bao';
-  };
-  options: {
-    draftAndPublish: true;
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
   };
   attributes: {
     content: Schema.Attribute.RichText &
@@ -649,53 +611,116 @@ export interface ApiThongBaoThongBao extends Struct.CollectionTypeSchema {
         {
           preset: 'defaultHtml';
         }
-      >;
+      > &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    description: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    locale: Schema.Attribute.String;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
-      'api::thong-bao.thong-bao'
-    > &
-      Schema.Attribute.Private;
+      'api::legal-document.legal-document'
+    >;
     publishedAt: Schema.Attribute.DateTime;
-    title: Schema.Attribute.String & Schema.Attribute.Required;
+    title: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
   };
 }
 
-export interface ApiVanBanVanBan extends Struct.CollectionTypeSchema {
-  collectionName: 'van_bans';
+export interface ApiOutstandingStudentOutstandingStudent
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'outstanding_students';
   info: {
-    displayName: 'V\u0103n b\u1EA3n';
-    pluralName: 'van-bans';
-    singularName: 'van-ban';
+    displayName: 'H\u1ECDc sinh n\u1ED5i b\u1EADt';
+    pluralName: 'outstanding-students';
+    singularName: 'outstanding-student';
   };
   options: {
     draftAndPublish: true;
   };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
   attributes: {
+    achievement: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    class: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     content: Schema.Attribute.RichText &
       Schema.Attribute.CustomField<
         'plugin::ckeditor5.CKEditor',
         {
           preset: 'defaultHtml';
         }
-      >;
+      > &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    image: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    > &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    locale: Schema.Attribute.String;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
-      'api::van-ban.van-ban'
-    > &
-      Schema.Attribute.Private;
+      'api::outstanding-student.outstanding-student'
+    >;
+    name: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     publishedAt: Schema.Attribute.DateTime;
-    title: Schema.Attribute.String;
+    school: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1212,13 +1237,11 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
-      'api::about.about': ApiAboutAbout;
+      'api::announcement.announcement': ApiAnnouncementAnnouncement;
       'api::event.event': ApiEventEvent;
       'api::global.global': ApiGlobalGlobal;
-      'api::hoc-sinh-noi-bat.hoc-sinh-noi-bat': ApiHocSinhNoiBatHocSinhNoiBat;
-      'api::home.home': ApiHomeHome;
-      'api::thong-bao.thong-bao': ApiThongBaoThongBao;
-      'api::van-ban.van-ban': ApiVanBanVanBan;
+      'api::legal-document.legal-document': ApiLegalDocumentLegalDocument;
+      'api::outstanding-student.outstanding-student': ApiOutstandingStudentOutstandingStudent;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

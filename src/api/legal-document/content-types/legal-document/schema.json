@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "events",
+  "collectionName": "legal_documents",
   "info": {
-    "singularName": "event",
-    "pluralName": "events",
-    "displayName": "Sự kiện"
+    "singularName": "legal-document",
+    "pluralName": "legal-documents",
+    "displayName": "Văn bản pháp lý"
   },
   "options": {
     "draftAndPublish": true
@@ -32,19 +32,6 @@
         }
       }
     },
-    "image": {
-      "type": "media",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "multiple": false,
-      "required": true,
-      "allowedTypes": [
-        "images"
-      ]
-    },
     "content": {
       "type": "customField",
       "pluginOptions": {
@@ -55,14 +42,6 @@
       "customField": "plugin::ckeditor5.CKEditor",
       "options": {
         "preset": "defaultHtml"
-      }
-    },
-    "date": {
-      "type": "date",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
       },
       "required": true
     }

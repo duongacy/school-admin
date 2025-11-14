@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "events",
+  "collectionName": "announcements",
   "info": {
-    "singularName": "event",
-    "pluralName": "events",
-    "displayName": "Sự kiện"
+    "singularName": "announcement",
+    "pluralName": "announcements",
+    "displayName": "Thông báo"
   },
   "options": {
     "draftAndPublish": true
@@ -25,25 +25,12 @@
       "required": true
     },
     "description": {
-      "type": "string",
+      "type": "text",
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
       }
-    },
-    "image": {
-      "type": "media",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "multiple": false,
-      "required": true,
-      "allowedTypes": [
-        "images"
-      ]
     },
     "content": {
       "type": "customField",
@@ -55,14 +42,6 @@
       "customField": "plugin::ckeditor5.CKEditor",
       "options": {
         "preset": "defaultHtml"
-      }
-    },
-    "date": {
-      "type": "date",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
       },
       "required": true
     }

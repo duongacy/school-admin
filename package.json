@@ -14,8 +14,8 @@
     "strapi": "strapi",
     "upgrade": "npx @strapi/upgrade latest",
     "upgrade:dry": "npx @strapi/upgrade latest --dry",
-    "export-db": "npm run strapi export -- --file data --key 123456",
-    "import-db": "npm run strapi import -- --file data.tar.gz.enc --key 123456"
+    "export-db": "npm run strapi export -- --no-encrypt --no-compress -f my-export",
+    "import-db": "npm run strapi import -- -f my-export.tar"
   },
   "dependencies": {
     "@_sh/strapi-plugin-ckeditor": "^6.0.3",

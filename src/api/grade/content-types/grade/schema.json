@@ -11,15 +11,16 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "name": {
-      "type": "string",
-      "required": true
-    },
     "books": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::book.book",
       "mappedBy": "grade"
+    },
+    "name": {
+      "type": "integer",
+      "required": true,
+      "unique": true
     }
   }
 }

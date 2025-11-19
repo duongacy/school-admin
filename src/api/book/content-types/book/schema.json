@@ -40,6 +40,20 @@
       "allowedTypes": [
         "files"
       ]
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "book_types": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::book-type.book-type",
+      "mappedBy": "sach"
     }
   }
 }

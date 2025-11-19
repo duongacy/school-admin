@@ -488,6 +488,36 @@ export interface ApiAnnouncementAnnouncement
   };
 }
 
+export interface ApiBookTypeBookType extends Struct.CollectionTypeSchema {
+  collectionName: 'book_types';
+  info: {
+    displayName: 'Lo\u1EA1i s\u00E1ch';
+    pluralName: 'book-types';
+    singularName: 'book-type';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::book-type.book-type'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    sach: Schema.Attribute.Relation<'manyToOne', 'api::book.book'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiBookBook extends Struct.CollectionTypeSchema {
   collectionName: 'books';
   info: {
@@ -499,11 +529,16 @@ export interface ApiBookBook extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    book_types: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::book-type.book-type'
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     file: Schema.Attribute.Media<'files', true> & Schema.Attribute.Required;
     grade: Schema.Attribute.Relation<'manyToOne', 'api::grade.grade'>;
+    image: Schema.Attribute.Media<'images'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::book.book'> &
       Schema.Attribute.Private;
@@ -634,7 +669,9 @@ export interface ApiGradeGrade extends Struct.CollectionTypeSchema {
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::grade.grade'> &
       Schema.Attribute.Private;
-    name: Schema.Attribute.String & Schema.Attribute.Required;
+    name: Schema.Attribute.Integer &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -1356,6 +1393,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::announcement.announcement': ApiAnnouncementAnnouncement;
+      'api::book-type.book-type': ApiBookTypeBookType;
       'api::book.book': ApiBookBook;
       'api::event.event': ApiEventEvent;
       'api::global.global': ApiGlobalGlobal;
